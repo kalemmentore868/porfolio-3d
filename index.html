@@ -33,11 +33,9 @@
     </header>
 
     <script src="js/three.js"></script>
+    <script src="js/threex.domevents.js"></script>
+    <script src="js/threex.linkify.js"></script>
     <script>
-        // import * as THREE from "three";
-// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-// import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-// import { Interaction } from "three.interaction";
 
 const makeSceneCameraLight = (canvasId) => {
   const scene = new THREE.Scene();
@@ -91,24 +89,29 @@ const spinObject = (Obj) => {
   Obj.rotation.z += 0.01;
 };
 
+const makeIconLink = (mesh, url) => {
+   THREEx.Linkify(domEvents, mesh, url, true)
+
+}
+
 const mediaIcons = makeSceneCameraLight("#media-links");
 
 const githubIcon = iconMaker(mediaIcons[0], "img/githublogo.png", -10);
 const linkedInLogo = iconMaker(mediaIcons[0], "img/linkedinlogo.jpg", 10);
 const instaLogo = iconMaker(mediaIcons[0], "img/instalogo.jpg", -30);
 
-//event listeners on 3d objects
-// const interaction = new Interaction(
-//   mediaIcons[4],
-//   mediaIcons[0],
-//   mediaIcons[1]
-// );
+//add event listeners to 3D objects
 
-// instaLogo.cursor = "pointer";
+const domEvents = new THREEx.DomEvents(mediaIcons[1], mediaIcons[4].domElement);
 
-// instaLogo.on("click", (ev) => {
-//   alert("YUH ORN");
-// });
+// domEvents.addEventListener(githubIcon, "mouseover", event => {
+//     githubIcon.scale.setScalar(2)
+// })
+
+
+makeIconLink(githubIcon, 'https://github.com/kalemmentore868')
+makeIconLink(linkedInLogo, "https://www.linkedin.com/in/kalem-mentore-6319b121a/")
+makeIconLink(instaLogo, "https://www.instagram.com/blank_868/")
 
 function animate() {
   requestAnimationFrame(animate);
