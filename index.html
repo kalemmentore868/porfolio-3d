@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 
     <title>Kalem's Website</title>
 </head>
 <body>
+   
     <header>
-        <canvas></canvas>
+        <div>
+            <canvas id="propic"></canvas>
+            <h2>Click and drag me <br> scroll to zoom</h2>
+        </div>
+        
+           
+        </canvas>
 
         <nav>
             <ul>
@@ -31,100 +41,17 @@
 
         
     </header>
+    <main>
+        <section class="hero">
+            <h1>Welcome To My Portfolio Website</h1>
+        </section>
+    </main>
 
-    <script src="js/three.js"></script>
+    <script src="js/three.js" ></script>
     <script src="js/threex.domevents.js"></script>
     <script src="js/threex.linkify.js"></script>
-    <script>
-
-const makeSceneCameraLight = (canvasId) => {
-  const scene = new THREE.Scene();
-
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000
-  );
-
-  camera.position.setZ(30);
-  camera.position.setX(-3);
-
-  const pointLight = new THREE.PointLight(0xfffff);
-  pointLight.position.set(-5, 0, 20);
-
-  //add ambient lighting
-  const ambientLight = new THREE.AmbientLight(0xffffff);
-
-  const renderer = new THREE.WebGLRenderer({
-    canvas: document.querySelector(canvasId),
-  });
-
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(530, 150);
-
-  renderer.render(scene, camera);
-
-  scene.add(camera, pointLight, ambientLight);
-
-  return [scene, camera, pointLight, ambientLight, renderer];
-};
-
-const iconMaker = (scene, logoPath, xcord) => {
-  const iconTexture = new THREE.TextureLoader().load(logoPath);
-  const geometry = new THREE.BoxGeometry(7, 7, 7);
-  const material = new THREE.MeshBasicMaterial({ map: iconTexture });
-  const sphere = new THREE.Mesh(geometry, material);
-
-  sphere.position.setX(xcord);
-
-  scene.add(sphere);
-
-  return sphere;
-};
-
-const spinObject = (Obj) => {
-  Obj.rotation.x += 0.01;
-  Obj.rotation.y += 0.005;
-  Obj.rotation.z += 0.01;
-};
-
-const makeIconLink = (mesh, url) => {
-   THREEx.Linkify(domEvents, mesh, url, true)
-
-}
-
-const mediaIcons = makeSceneCameraLight("#media-links");
-
-const githubIcon = iconMaker(mediaIcons[0], "img/githublogo.png", -10);
-const linkedInLogo = iconMaker(mediaIcons[0], "img/linkedinlogo.jpg", 10);
-const instaLogo = iconMaker(mediaIcons[0], "img/instalogo.jpg", -30);
-
-//add event listeners to 3D objects
-
-const domEvents = new THREEx.DomEvents(mediaIcons[1], mediaIcons[4].domElement);
-
-// domEvents.addEventListener(githubIcon, "mouseover", event => {
-//     githubIcon.scale.setScalar(2)
-// })
-
-
-makeIconLink(githubIcon, 'https://github.com/kalemmentore868')
-makeIconLink(linkedInLogo, "https://www.linkedin.com/in/kalem-mentore-6319b121a/")
-makeIconLink(instaLogo, "https://www.instagram.com/blank_868/")
-
-function animate() {
-  requestAnimationFrame(animate);
-
-  spinObject(githubIcon);
-  spinObject(linkedInLogo);
-  spinObject(instaLogo);
-
-  mediaIcons[4].render(mediaIcons[0], mediaIcons[1]);
-}
-
-animate();
-
-    </script>
+    <script src="js/GLTFLoader.js" type="module"></script>
+    <script src="js/main.js" type="module"></script>
+    <script src="js/OrbitControls.js" type="module"></script>
 </body>
 </html>

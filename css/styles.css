@@ -1,12 +1,13 @@
 * {
   margin: 0;
   padding: 0;
-  outline: 1px red solid;
+  /* outline: 1px red solid; */
 }
 
 body {
   background-color: black;
   font-size: 1.5rem;
+  font-family: "Mukta Malar", sans-serif;
 }
 
 li {
@@ -20,12 +21,41 @@ a {
 
 ul {
   display: flex;
-
+  padding-top: 20px;
   justify-content: space-between;
+  padding-right: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+ul a:hover {
+  color: white;
+  transition: all 0.3s ease-in-out;
 }
 
 header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+#media-links {
+  justify-self: end;
+}
+
+header h2 {
   color: white;
+  /* text-align: center; */
+  font-size: 1.2rem;
+  margin-left: 100px;
+}
+
+h1 {
+  background: linear-gradient(
+    121.57deg,
+    #ffffff 18.77%,
+    rgba(255, 255, 255, 0.66) 60.15%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
